@@ -4,17 +4,31 @@ import health from "./routes/routes";
 import httpLogger from "./middlewares/http.logger";
 import { errorHandler } from "./middlewares/error.middleware";
 import notFoundHandler from "./middlewares/notFound.middleware";
+import helmet from "helmet";
+import rateLimiter from "./middlewares/rateLimit.middleware";
 
 const app: Application = express();
 
-// Middleware
+// Security middleware
+app.use(helmet());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
+app.use(rateLimiter);
+
+// Express middleware
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+
+// Logging middleware
 app.use(httpLogger);
 
-// Routes
+// Health check routes
 app.use("/api/v1", health);
+
 
 // Error handling middleware
 app.use(notFoundHandler);
