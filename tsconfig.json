@@ -24,7 +24,8 @@
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "allowJs": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
