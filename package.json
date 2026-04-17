@@ -17,6 +17,8 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "sequelize-typescript": "^2.1.6",
+    "uuid": "^13.0.0",
     "winston": "^3.19.0"
   },
   "devDependencies": {
