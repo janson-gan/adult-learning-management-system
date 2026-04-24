@@ -91,6 +91,30 @@ export const createStudent = asyncHandler(
 );
 ```
 
+**Issue**: Using throw errors in asynchronous callback function won't caught the errors properly because it doesn't happen immediately.
+- **Solution**: Use trycatch instead
+  ```
+  ❌
+  const example = ((err, test) => {
+    if (err) {
+      throw Error({...})
+    }
+  })
+  ```
+  ```
+  ✔️
+  try {
+    const example = () => {
+    {some logic here...}
+    }
+  } catch (err) {
+    if (err) {
+      some logic here...
+    }
+  }
+
+  ```
+
 ### Order In app.ts
 1. Security middleware (cors, helmet).
 2. Routes (auth, user).
@@ -189,6 +213,21 @@ module.exports = {
   ```
   const existingEmail = await User.findOne({ where: { email } })
   ```
+
+### Typescript Error
+
+**Issue**: Property 'user' does not exist on type `'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.`
+- **Solution**: The native Express Request type does not include a user property. Declare it globally to use anywhere in the project.
+  ```
+  declare global {
+  namespace Express {
+    interface Request {
+      user?: JWTPayloadType;
+    }
+  }
+}
+```
+
 
 ## Key Concepts Learned
 1. MVC Pattern: Model (data), View (JSON response), Controller (business logic)
