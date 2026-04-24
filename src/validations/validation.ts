@@ -11,5 +11,10 @@ export const registerSchema = z.object({
   role: z.enum(['student', 'trainer', 'admin']),
 });
 
+export const loginSchema = z.object({
+  email: z.email('Invalid email format'),
+  password: z.string().min(1, 'Password is required'),
+});
 
-export type RegisterType = z.infer<typeof registerSchema>
+export type RegisterType = z.infer<typeof registerSchema>;
+export type LoginType = z.infer<typeof loginSchema>;
