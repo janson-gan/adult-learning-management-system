@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+    html {
+        @apply text-gray-700;
+        @apply bg-blue-50;
+    }
+}
+@theme {
+    --color-muted-gray: #B4B6B8;
+    --color-cool-ash: #77A6C0;
+    --color-soft-blue: #5A94C1;
+    --color-deep-blue: #073A69;
+    --color-deep-blue-600: #0B5499;
+    --color-dusty-blue: #171725;
+}
